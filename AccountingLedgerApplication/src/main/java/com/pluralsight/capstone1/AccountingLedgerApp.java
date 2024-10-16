@@ -32,7 +32,7 @@ public class AccountingLedgerApp {
                 deposit();
                 break;
             case "P":
-                System.out.println("P) Make Payment(Debit): ");
+                payment();
                 break;
             case "L":
                 System.out.println("L) Ledger:");
@@ -141,6 +141,32 @@ public class AccountingLedgerApp {
             System.out.println("Error");
         }
             scanner.close();
+        }
+        public static void payment () {
+    Scanner scanner = new Scanner(System.in);
+
+            System.out.println("Please enter deposit details below: ");
+            System.out.println("Please enter a description");
+            String description = scanner.nextLine();
+            System.out.println("Please enter a vendor");
+            String vendor = scanner.nextLine();
+            System.out.println("Please enter an amount");
+            String amountInput = scanner.nextLine();
+            double amount = -Double.parseDouble(amountInput);
+
+            LocalDate date = LocalDate.now();
+            LocalTime time = LocalTime.now();
+            String transactionsFile = "transactions.csv";
+
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(transactionsFile, true))) {
+                writer.write(date + "|" + time + "|" + description +"|" + vendor +"|" + amount);
+                writer.newLine();
+                System.out.println("Your payment has been accepted.");
+            } catch (IOException e) {
+                System.out.println("Error");
+            }
+            scanner.close();
+
         }
         }
 
