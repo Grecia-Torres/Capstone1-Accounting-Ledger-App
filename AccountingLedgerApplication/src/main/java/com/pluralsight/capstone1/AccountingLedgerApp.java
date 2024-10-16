@@ -12,41 +12,37 @@ import java.util.Scanner;
 public class AccountingLedgerApp {
     public static void main(String[] args) {
         homeScreen();
-        displayLedger();
-        displayReports();
+
     }
 
     public static void homeScreen() {
-        try {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("                 HOME   ");
-            System.out.println("Please choose an option from the following: ");
-            System.out.println("D) Add Deposit");
-            System.out.println("P) Make Payment");
-            System.out.println("L) Ledger");
-            System.out.println("X) Exit\n");
-            String options = scanner.nextLine();
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("                 HOME   ");
+        System.out.println("Please choose an option from the following: ");
+        System.out.println("D) Add Deposit");
+        System.out.println("P) Make Payment");
+        System.out.println("L) Ledger");
+        System.out.println("X) Exit\n");
+        String options = scanner.nextLine();
 
 
-            switch (options) {
-                case "D":
-                    System.out.println("D) Add Deposit: ");
-                    break;
-                case "P":
-                    System.out.println("P) Make Payment(Debit): ");
-                    break;
-                case "L":
-                    System.out.println("L) Ledger:");
-                    displayLedger();
-                    break;
-                case "X":
-                    System.out.println("X) Exit: ");
-                    scanner.close();
-                    return;
-            }
-        } catch (Exception e) {
-            System.out.println("Invalid! Pick one of the options below!");
-            return;
+        switch (options) {
+            case "D":
+                deposit();
+                break;
+            case "P":
+                System.out.println("P) Make Payment(Debit): ");
+                break;
+            case "L":
+                System.out.println("L) Ledger:");
+                displayLedger();
+                break;
+            case "X":
+                System.out.println("X) Exit: ");
+                scanner.close();
+                return;
+
         }
     }
 
@@ -122,7 +118,33 @@ public class AccountingLedgerApp {
             throw new RuntimeException(e);
         }
     }
-}
+    public static void deposit() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Please enter deposit details below: ");
+        System.out.println("Please enter a description");
+        String description = scanner.nextLine();
+        System.out.println("Please enter a vendor");
+        String vendor = scanner.nextLine();
+        System.out.println("Please enter an amount");
+        String amount = scanner.nextLine();
+
+        LocalDate date = LocalDate.now();
+        LocalTime time = LocalTime.now();
+        String transactionsFile = "transactions.csv";
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(transactionsFile, true))) {
+            writer.write(date + "|" + time + "|" + description +"|" + vendor +"|" + amount);
+            writer.newLine();
+            System.out.println("Your deposit has been accepted.");
+        } catch (IOException e) {
+            System.out.println("Error");
+        }
+            scanner.close();
+        }
+        }
+
+
 
 
 
