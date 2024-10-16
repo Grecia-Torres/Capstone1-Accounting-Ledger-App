@@ -13,6 +13,7 @@ public class AccountingLedgerApp {
     public static void main(String[] args) {
         homeScreen();
         displayLedger();
+        displayReports();
     }
 
     public static void homeScreen() {
@@ -25,6 +26,7 @@ public class AccountingLedgerApp {
             System.out.println("L) Ledger");
             System.out.println("X) Exit\n");
             String options = scanner.nextLine();
+
 
             switch (options) {
                 case "D":
@@ -45,36 +47,82 @@ public class AccountingLedgerApp {
         } catch (Exception e) {
             System.out.println("Invalid! Pick one of the options below!");
             return;
-
         }
     }
-        public static void displayLedger() {
-            try {
-                Scanner scanner = new Scanner(System.in);
-                System.out.println("Please choose an option from the options below:");
-                System.out.println("A) All(Will display all options");
-                System.out.println("D) Deposits");
-                System.out.println("P) Payments");
-                System.out.println("R) Reports");
-                String ledgerOptions = scanner.nextLine();
 
-                switch (ledgerOptions) {
-                    case "A":
-                        System.out.println("A) All: ");
-                        break;
-                    case "D":
-                        System.out.println("D) Deposits: ");
-                        break;
-                    case "P":
-                        System.out.println("P) Payments: ");
-                        break;
-                    case "R":
-                        System.out.println("R) Reports: ");
-                        break;
-                }
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+    public static void displayLedger() {
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Please choose an option from the options below:");
+            System.out.println("A) All(Will display all options");
+            System.out.println("D) Deposits");
+            System.out.println("P) Payments");
+            System.out.println("R) Reports");
+            System.out.println("H) Home");
+            String ledgerOptions = scanner.nextLine();
+
+            switch (ledgerOptions) {
+                case "A":
+                    System.out.println("A) All: ");
+                    break;
+                case "D":
+                    System.out.println("D) Deposits: ");
+                    break;
+                case "P":
+                    System.out.println("P) Payments: ");
+                    break;
+                case "R":
+                    System.out.println("R) Reports: ");
+                    displayReports();
+                    break;
+                case "H":
+                    System.out.println("H) Home: ");
+                    scanner.close();
+                    return;
             }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
+
+    public static void displayReports() {
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Please choose one of the options below:");
+            System.out.println("1) Month to Date");
+            System.out.println("2) Previous Month");
+            System.out.println("3) Year To Date");
+            System.out.println("4) Previous Year");
+            System.out.println("5) Search By Vendor");
+            System.out.println("0) Back");
+            String reportOptions = scanner.nextLine();
+
+            switch (reportOptions) {
+                case "0":
+                    System.out.println("0) Back");
+                    scanner.close();
+                    return;
+                case "1":
+                    System.out.println("1) Month to Date");
+                    break;
+                case "2":
+                    System.out.println("2) Previous Month");
+                    break;
+                case "3":
+                    System.out.println("3) Year To Date");
+                    break;
+                case "4":
+                    System.out.println("4) Previous Year");
+                    break;
+                case "5":
+                    System.out.println("5) Search By Vendor");
+                    break;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+
+
 
