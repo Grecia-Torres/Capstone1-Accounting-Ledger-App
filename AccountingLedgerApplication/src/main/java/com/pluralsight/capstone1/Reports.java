@@ -39,6 +39,7 @@ public class Reports {
                     break;
                 case "4":
                     System.out.println("4) Previous Year");
+                    previousYear();
                     break;
                 case "5":
                     System.out.println("5) Search By Vendor");
@@ -71,7 +72,7 @@ public class Reports {
             String year = entries[0];
             LocalDate yearDate = LocalDate.parse(year);
 
-            if (yearDate.getYear() ==(LocalDate.now().getYear()))
+            if (yearDate.getYear() ==(LocalDate.now().getYear())) //Maaike helped me fix this line
             {
                 System.out.println(line);
             }
@@ -79,7 +80,22 @@ public class Reports {
 
     }
 
-    public static void previousYear() {
+    public static void previousYear() throws IOException {
+        System.out.println("You've entered previous year");
+        String line;
+
+        FileReader fileReader = new FileReader("transactions.csv");
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        bufferedReader.readLine();
+        while ((line = bufferedReader.readLine()) != null) {
+            String [] entries = line.split("\\|");
+            String previous = entries[0];
+            LocalDate previousYr = LocalDate.parse(previous);
+
+            if (previousYr.getYear() == (LocalDate.now().minusYears(1).getYear())) {
+                System.out.println(line);
+            }
+        }
 
     }
 
