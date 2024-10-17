@@ -19,6 +19,10 @@ public class Transactions {
 
     }
 
+    public void display() {
+        System.out.println(date + "|" + time + "|" + description + "|" + vendor + "|" + amount);
+    }
+
     public LocalDate getDate() {
 
         return date;

@@ -4,8 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
+
 import static com.pluralsight.capstone1.AccountingLedgerApp.homeScreen;
 import static com.pluralsight.capstone1.Reports.displayReports;
 
@@ -33,6 +33,7 @@ public class Ledger {
                     break;
                 case "P":
                     System.out.println("P) Payments: ");
+                    paymentEntries();
                     break;
                 case "R":
                     System.out.println("R) Reports: ");
@@ -65,21 +66,74 @@ public class Ledger {
     }
 
     public static void depositEntries() {
-        List<float[]> depositEntriesList = new ArrayList<>();
+        ArrayList<String[]> depositList = new ArrayList<>();
+        String line;
 
         try {
             FileReader fileReader = new FileReader("transactions.csv");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
-            String line;
-
             while ((line = bufferedReader.readLine()) != null) {
-                String[] values = line.split("\\|");
-                float[] floatValues = new float[values.length];
-
+                String[] entries = line.split("\\|");
+                depositList.add(entries);
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        for (String[] amountEntry : depositList) {
 
+            if (amountEntry.length > 4) {
+
+                try {
+                    double amount = Double.parseDouble(amountEntry[4]);
+                    if (amount > 0) {
+                        System.out.println(amount);
+                    }
+
+                } catch (NumberFormatException e) {
+                    System.out.println("error");
+                }
+            }
         }
     }
-}
+
+    public static void paymentEntries() {
+        ArrayList<String[]> paymentList = new ArrayList<>();
+        String line;
+
+        try {
+            FileReader fileReader = new FileReader("transactions.csv");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            {
+
+            }
+            while ((line = bufferedReader.readLine()) != null) {
+
+                String[] entries = line.split("\\|");
+
+                paymentList.add(entries);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        for (String[] amountEntry : paymentList) {
+            try {
+                double amount = Double.parseDouble(amountEntry[4]);
+                if (amount < 0) {
+                    System.out.println(amount);
+                }
+
+            } catch (NumberFormatException e) {
+                System.out.println("error");
+            }
+        }
+        }
+    }
+
+
+
+
+
+
+
+
+

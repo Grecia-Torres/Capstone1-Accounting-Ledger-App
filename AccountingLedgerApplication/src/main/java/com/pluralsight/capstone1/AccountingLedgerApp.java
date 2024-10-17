@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 import static com.pluralsight.capstone1.Ledger.*;
 
-
 public class AccountingLedgerApp {
     public static void main(String[] args) {
         homeScreen();
@@ -89,13 +88,15 @@ public class AccountingLedgerApp {
             writer.write(date + "|" + time + "|" + description + "|" + vendor + "|" + amount);
             writer.newLine();
             System.out.println("Your payment has been accepted.");
+
         } catch (IOException e) {
             System.out.println("Error");
         }
         scanner.close();
-        }
-
     }
+}
+
+
 
 
 
