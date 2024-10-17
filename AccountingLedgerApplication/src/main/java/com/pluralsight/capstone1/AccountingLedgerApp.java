@@ -1,13 +1,15 @@
 package com.pluralsight.capstone1;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Scanner;
+
+import static com.pluralsight.capstone1.Ledger.allLedgerEntries;
+import static com.pluralsight.capstone1.Ledger.depositEntries;
+
 
 public class AccountingLedgerApp {
     public static void main(String[] args) {
@@ -50,7 +52,7 @@ public class AccountingLedgerApp {
         try {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Please choose an option from the options below:");
-            System.out.println("A) All(Will display all options");
+            System.out.println("A) All");
             System.out.println("D) Deposits");
             System.out.println("P) Payments");
             System.out.println("R) Reports");
@@ -59,10 +61,13 @@ public class AccountingLedgerApp {
 
             switch (ledgerOptions) {
                 case "A":
-                    System.out.println("A) All: ");
+                    System.out.println("You chose option A ");
+                    System.out.println("Below are ALL the transactions that have been made:\n");
+                    allLedgerEntries();
                     break;
                 case "D":
                     System.out.println("D) Deposits: ");
+                    depositEntries();
                     break;
                 case "P":
                     System.out.println("P) Payments: ");
@@ -72,9 +77,9 @@ public class AccountingLedgerApp {
                     displayReports();
                     break;
                 case "H":
-                    System.out.println("H) Home: ");
-                    scanner.close();
-                    return;
+                    System.out.println("You are being directed back to the HOME SCREEN");
+                    homeScreen();
+                    break;
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -96,8 +101,7 @@ public class AccountingLedgerApp {
             switch (reportOptions) {
                 case "0":
                     System.out.println("0) Back");
-                    scanner.close();
-                    return;
+                    homeScreen();
                 case "1":
                     System.out.println("1) Month to Date");
                     break;
@@ -118,6 +122,7 @@ public class AccountingLedgerApp {
             throw new RuntimeException(e);
         }
     }
+
     public static void deposit() {
         Scanner scanner = new Scanner(System.in);
 
@@ -134,41 +139,49 @@ public class AccountingLedgerApp {
         String transactionsFile = "transactions.csv";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(transactionsFile, true))) {
-            writer.write(date + "|" + time + "|" + description +"|" + vendor +"|" + amount);
+            writer.write(date + "|" + time + "|" + description + "|" + vendor + "|" + amount);
             writer.newLine();
             System.out.println("Your deposit has been accepted.");
         } catch (IOException e) {
             System.out.println("Error");
         }
-            scanner.close();
+        scanner.close();
+    }
+
+    public static void payment() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Please enter deposit details below: ");
+        System.out.println("Please enter a description");
+        String description = scanner.nextLine();
+        System.out.println("Please enter a vendor");
+        String vendor = scanner.nextLine();
+        System.out.println("Please enter an amount");
+        String amountInput = scanner.nextLine();
+        double amount = -Double.parseDouble(amountInput);
+
+        LocalDate date = LocalDate.now();
+        LocalTime time = LocalTime.now();
+        String transactionsFile = "transactions.csv";
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(transactionsFile, true))) {
+            writer.write(date + "|" + time + "|" + description + "|" + vendor + "|" + amount);
+            writer.newLine();
+            System.out.println("Your payment has been accepted.");
+        } catch (IOException e) {
+            System.out.println("Error");
         }
-        public static void payment () {
-    Scanner scanner = new Scanner(System.in);
+        scanner.close();
 
-            System.out.println("Please enter deposit details below: ");
-            System.out.println("Please enter a description");
-            String description = scanner.nextLine();
-            System.out.println("Please enter a vendor");
-            String vendor = scanner.nextLine();
-            System.out.println("Please enter an amount");
-            String amountInput = scanner.nextLine();
-            double amount = -Double.parseDouble(amountInput);
 
-            LocalDate date = LocalDate.now();
-            LocalTime time = LocalTime.now();
-            String transactionsFile = "transactions.csv";
 
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(transactionsFile, true))) {
-                writer.write(date + "|" + time + "|" + description +"|" + vendor +"|" + amount);
-                writer.newLine();
-                System.out.println("Your payment has been accepted.");
-            } catch (IOException e) {
-                System.out.println("Error");
-            }
-            scanner.close();
 
         }
-        }
+
+    }
+
+
+
 
 
 
