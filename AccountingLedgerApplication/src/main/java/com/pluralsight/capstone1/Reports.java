@@ -29,6 +29,7 @@ public class Reports {
                     homeScreen();
                 case "1":
                     System.out.println("1) Month to Date");
+                    monthToDate();
                     break;
                 case "2":
                     System.out.println("2) Previous Month");
@@ -51,7 +52,23 @@ public class Reports {
         }
     }
 
-    public static void monthToDate() {
+    public static void monthToDate() throws IOException {
+        System.out.println("You've entered month to date");
+        String line;
+
+        FileReader fileReader = new FileReader("transactions.csv");
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        bufferedReader.readLine();
+        while ((line = bufferedReader.readLine()) != null) {
+            String [] entries = line.split("\\|");
+            String month = entries[0];
+            LocalDate monthDate = LocalDate.parse(month);
+
+            if (monthDate.getMonth() ==(LocalDate.now().getMonth()))
+            {
+                System.out.println(line);
+            }
+        }
 
 
     }
