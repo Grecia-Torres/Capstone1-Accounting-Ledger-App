@@ -72,6 +72,7 @@ public class Ledger {
         try {
             FileReader fileReader = new FileReader("transactions.csv");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
+            bufferedReader.readLine();
             while ((line = bufferedReader.readLine()) != null) {
                 String[] entries = line.split("\\|");
                 depositList.add(entries);
