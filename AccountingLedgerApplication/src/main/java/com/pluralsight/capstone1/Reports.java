@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import static com.pluralsight.capstone1.AccountingLedgerApp.homeScreen;
 
@@ -33,6 +35,7 @@ public class Reports {
                     break;
                 case "3":
                     System.out.println("3) Year To Date");
+                    yearToDate();
                     break;
                 case "4":
                     System.out.println("4) Previous Year");
@@ -56,7 +59,23 @@ public class Reports {
 
     }
 
-    public static void yearToDate() {
+    public static void yearToDate() throws IOException{
+        System.out.println("You've entered Year to Date");
+        String line;
+
+        FileReader fileReader = new FileReader("transactions.csv");
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        bufferedReader.readLine();
+        while ((line = bufferedReader.readLine()) != null) {
+            String [] entries = line.split("\\|");
+            String year = entries[0];
+            LocalDate yearDate = LocalDate.parse(year);
+
+            if (yearDate.getYear() ==(LocalDate.now().getYear()))
+            {
+                System.out.println(line);
+            }
+        }
 
     }
 

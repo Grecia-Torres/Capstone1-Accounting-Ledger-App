@@ -104,6 +104,7 @@ public class Ledger {
         try {
             FileReader fileReader = new FileReader("transactions.csv");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
+            bufferedReader.readLine();
             {
 
             }
