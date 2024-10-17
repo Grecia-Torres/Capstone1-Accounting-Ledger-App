@@ -5,8 +5,49 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+import static com.pluralsight.capstone1.AccountingLedgerApp.homeScreen;
+import static com.pluralsight.capstone1.Reports.displayReports;
 
 public class Ledger {
+    public static void displayLedger() {
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Please choose an option from the options below:");
+            System.out.println("A) All");
+            System.out.println("D) Deposits");
+            System.out.println("P) Payments");
+            System.out.println("R) Reports");
+            System.out.println("H) Home");
+            String ledgerOptions = scanner.nextLine();
+
+            switch (ledgerOptions) {
+                case "A":
+                    System.out.println("You chose option A ");
+                    System.out.println("Below are ALL the transactions that have been made:\n");
+                    allLedgerEntries();
+                    break;
+                case "D":
+                    System.out.println("D) Deposits: ");
+                    depositEntries();
+                    break;
+                case "P":
+                    System.out.println("P) Payments: ");
+                    break;
+                case "R":
+                    System.out.println("R) Reports: ");
+                    displayReports();
+                    break;
+                case "H":
+                    System.out.println("You are being directed back to the HOME SCREEN");
+                    homeScreen();
+                    break;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static void allLedgerEntries() {
         try {
             FileReader fileReader = new FileReader("transactions.csv");
