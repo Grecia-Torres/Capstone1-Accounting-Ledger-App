@@ -33,6 +33,7 @@ public class Reports {
                     break;
                 case "2":
                     System.out.println("2) Previous Month");
+                    previousMonth();
                     break;
                 case "3":
                     System.out.println("3) Year To Date");
@@ -60,12 +61,11 @@ public class Reports {
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         bufferedReader.readLine();
         while ((line = bufferedReader.readLine()) != null) {
-            String [] entries = line.split("\\|");
+            String[] entries = line.split("\\|");
             String month = entries[0];
             LocalDate monthDate = LocalDate.parse(month);
 
-            if (monthDate.getMonth() ==(LocalDate.now().getMonth()))
-            {
+            if (monthDate.getMonth() == (LocalDate.now().getMonth())) {
                 System.out.println(line);
             }
         }
@@ -73,11 +73,26 @@ public class Reports {
 
     }
 
-    public static void previousMonth() {
+    public static void previousMonth() throws IOException {
+        System.out.println("You've selected previous month");
+        String line;
+
+        FileReader fileReader = new FileReader("transactions.csv");
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        bufferedReader.readLine();
+        while ((line = bufferedReader.readLine()) != null) {
+            String[] entries = line.split("\\|");
+            String previous = entries[0];
+            LocalDate previousMo = LocalDate.parse(previous);
+
+            if (previousMo.getMonth() == (LocalDate.now().minusMonths(1).getMonth())) {
+                System.out.println(line);
+            }
+        }
 
     }
 
-    public static void yearToDate() throws IOException{
+    public static void yearToDate() throws IOException {
         System.out.println("You've entered Year to Date");
         String line;
 
@@ -85,11 +100,11 @@ public class Reports {
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         bufferedReader.readLine();
         while ((line = bufferedReader.readLine()) != null) {
-            String [] entries = line.split("\\|");
+            String[] entries = line.split("\\|");
             String year = entries[0];
             LocalDate yearDate = LocalDate.parse(year);
 
-            if (yearDate.getYear() ==(LocalDate.now().getYear())) //Maaike helped me fix this line
+            if (yearDate.getYear() == (LocalDate.now().getYear())) //Maaike helped me fix this line
             {
                 System.out.println(line);
             }
@@ -105,7 +120,7 @@ public class Reports {
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         bufferedReader.readLine();
         while ((line = bufferedReader.readLine()) != null) {
-            String [] entries = line.split("\\|");
+            String[] entries = line.split("\\|");
             String previous = entries[0];
             LocalDate previousYr = LocalDate.parse(previous);
 
