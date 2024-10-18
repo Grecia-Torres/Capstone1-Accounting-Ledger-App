@@ -60,12 +60,12 @@ public class AccountingLedgerApp {
 
         LocalDate date = LocalDate.now();
         LocalTime time = LocalTime.now();
-        DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm:ss");
-        String formatTime = time.format(timeFormat);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String timeFormatted = time.format(formatter);
         String transactionsFile = "transactions.csv";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(transactionsFile, true))) {
-            writer.write(date + "|" + timeFormat + "|" + description + "|" + vendor + "|" + amount);
+            writer.write(date + "|" + timeFormatted + "|" + description + "|" + vendor + "|" + amount);
             writer.newLine();
             System.out.println("Your deposit has been accepted.");
         } catch (IOException e) {
@@ -88,10 +88,12 @@ public class AccountingLedgerApp {
 
         LocalDate date = LocalDate.now();
         LocalTime time = LocalTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String timeFormatted = time.format(formatter);
         String transactionsFile = "transactions.csv";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(transactionsFile, true))) {
-            writer.write(date + "|" + time + "|" + description + "|" + vendor + "|" + amount);
+            writer.write(date + "|" + timeFormatted + "|" + description + "|" + vendor + "|" + amount);
             writer.newLine();
             System.out.println("Your payment has been accepted.");
 
