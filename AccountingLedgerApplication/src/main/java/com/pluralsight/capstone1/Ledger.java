@@ -39,7 +39,7 @@ public class Ledger {
                 case "P":
                     System.out.println("P) Payments: ");
                     paymentEntries();
-                    break;
+                    displayLedger();
                     // If user enters R then the Reports Screen will appear
                 case "R":
                     System.out.println("              REPORTS");
@@ -50,7 +50,7 @@ public class Ledger {
                     System.out.println("You are being directed back to the HOME SCREEN");
                     homeScreen();
                     break;
-                    // User entered an entry that wasn't valid and will be asked to pick valid option
+                // User entered an entry that wasn't valid and will be asked to pick valid option
                 default:
                     System.out.println("Not a valid entry");
                     displayLedger();
@@ -60,6 +60,7 @@ public class Ledger {
             throw new RuntimeException(e);
         }
     }
+
     // This method reads from transaction file and outputs all entries
     public static void allLedgerEntries() {
         try {
@@ -76,6 +77,7 @@ public class Ledger {
             e.printStackTrace();
         }
     }
+
     // reads from transactions csv file but only prints deposits
     public static void depositEntries() {
         // This array list stores the column/rows of the csv file
@@ -114,6 +116,7 @@ public class Ledger {
             }
         }
     }
+
     // this method reads from csv file and prints only the payments
     public static void paymentEntries() {
         ArrayList<String[]> paymentList = new ArrayList<>();
@@ -149,6 +152,7 @@ public class Ledger {
         }
     }
 }
+
 
 
 
