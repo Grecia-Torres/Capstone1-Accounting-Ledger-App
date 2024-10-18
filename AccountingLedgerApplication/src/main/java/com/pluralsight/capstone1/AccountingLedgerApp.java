@@ -13,7 +13,6 @@ import static com.pluralsight.capstone1.Ledger.*;
 public class AccountingLedgerApp {
     public static void main(String[] args) {
         homeScreen();
-
     }
 
     public static void homeScreen() {
@@ -33,16 +32,16 @@ public class AccountingLedgerApp {
             // If user enters D they will be directed to make a deposit
             case "D":
                 deposit();
-                homeScreen();
+                break;
             // If user enters P they will be prompted to make a payment
             case "P":
                 payment(); //takes user to payment method after being chosen
-                homeScreen();
+                break;
             // If user enters L they will be directed to Ledger Screen
             case "L":
                 System.out.println("                LEDGER MENU");
                 displayLedger();
-                homeScreen();
+                break;
             // If user enters X they will exit and close the program
             case "X":
                 System.out.println("X) Exit: ");
