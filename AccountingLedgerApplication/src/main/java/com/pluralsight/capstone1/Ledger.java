@@ -98,12 +98,12 @@ public class Ledger {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for (String[] amountEntry : depositList) {
-            // If the amount entry is in one of the four columns the code will execute
+        for (String[] entries : depositList) {
+            // If the entries is in one of the four columns the code will execute
 
             try {
                 // looks and reads column 4
-                double amount = Double.parseDouble(amountEntry[4]);
+                double amount = Double.parseDouble(entries[4]);
                 // if the amount is greater than 0 (positive number) it will print
                 if (amount > 0) {
                     System.out.println(amount);
@@ -137,9 +137,9 @@ public class Ledger {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for (String[] amountEntry : paymentList) {
+        for (String[] entries : paymentList) {
             try {
-                double amount = Double.parseDouble(amountEntry[4]);
+                double amount = Double.parseDouble(entries[4]);
                 // if entry amount is less than 0 (negative number) it will print
                 if (amount < 0) {
                     System.out.println(amount);
