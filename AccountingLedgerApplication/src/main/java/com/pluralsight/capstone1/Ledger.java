@@ -100,22 +100,21 @@ public class Ledger {
         }
         for (String[] amountEntry : depositList) {
             // If the amount entry is in one of the four columns the code will execute
-            if (amountEntry.length > 4) {
 
-                try {
-                    // looks and reads column 4
-                    double amount = Double.parseDouble(amountEntry[4]);
-                    // if the amount is greater than 0 (positive number) it will print
-                    if (amount > 0) {
-                        System.out.println(amount);
-                    }
-
-                } catch (NumberFormatException e) {
-                    System.out.println("error");
+            try {
+                // looks and reads column 4
+                double amount = Double.parseDouble(amountEntry[4]);
+                // if the amount is greater than 0 (positive number) it will print
+                if (amount > 0) {
+                    System.out.println(amount);
                 }
+
+            } catch (NumberFormatException e) {
+                System.out.println("error");
             }
         }
     }
+
 
     // this method reads from csv file and prints only the payments
     public static void paymentEntries() {
