@@ -33,16 +33,16 @@ public class AccountingLedgerApp {
             // If user enters D they will be directed to make a deposit
             case "D":
                 deposit();
-                break;
+                homeScreen();
             // If user enters P they will be prompted to make a payment
             case "P":
                 payment(); //takes user to payment method after being chosen
-                break;
+                homeScreen();
             // If user enters L they will be directed to Ledger Screen
             case "L":
                 System.out.println("                LEDGER MENU");
                 displayLedger();
-                break;
+                homeScreen();
             // If user enters X they will exit and close the program
             case "X":
                 System.out.println("X) Exit: ");

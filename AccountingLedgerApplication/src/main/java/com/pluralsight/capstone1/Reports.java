@@ -32,17 +32,17 @@ public class Reports {
                 case "1":
                     System.out.println("1) Month to Date");
                     monthToDate();
-                    break;
+                    displayReports();
                     // If user enters 2 only entries from previous month will output
                 case "2":
                     System.out.println("2) Previous Month");
                     previousMonth();
-                    break;
+                    displayReports();
                     // If user enters 3 only entries from current year will print
                 case "3":
                     System.out.println("3) Year To Date");
                     yearToDate();
-                    break;
+                    displayReports();
                     // If user enters 4 only entries from previous year will output
                 case "4":
                     System.out.println("4) Previous Year");
@@ -52,7 +52,7 @@ public class Reports {
                 case "5":
                     System.out.println("5) Search By Vendor");
                     searchByVendor();
-                    break;
+                    displayReports();
                     // User entered an option that wasn't valid and will be asked to pick a valid option
                 default:
                     System.out.println("Not a valid entry");

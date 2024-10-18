@@ -29,12 +29,12 @@ public class Ledger {
                     System.out.println("You chose option A ");
                     System.out.println("Below are ALL the transactions that have been made:\n");
                     allLedgerEntries();
-                    break;
+                    displayLedger();
                     // If user enters D then only the deposits from csv file will output
                 case "D":
                     System.out.println("D) Deposits: ");
                     depositEntries();
-                    break;
+                    displayLedger();
                     // If user enters P only payments will output
                 case "P":
                     System.out.println("P) Payments: ");
@@ -44,7 +44,7 @@ public class Ledger {
                 case "R":
                     System.out.println("              REPORTS");
                     displayReports();
-                    break;
+                    displayLedger();
                     // If user enters H then user will be directed to Home Screen
                 case "H":
                     System.out.println("You are being directed back to the HOME SCREEN");
