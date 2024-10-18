@@ -35,7 +35,7 @@ public class AccountingLedgerApp {
                 payment();
                 break;
             case "L":
-                System.out.println("L) Ledger:");
+                System.out.println("                LEDGER MENU");
                 displayLedger();
                 break;
             case "X":

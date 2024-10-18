@@ -36,7 +36,7 @@ public class Ledger {
                     paymentEntries();
                     break;
                 case "R":
-                    System.out.println("R) Reports: ");
+                    System.out.println("              REPORTS");
                     displayReports();
                     break;
                 case "H":
