@@ -33,7 +33,7 @@ public class AccountingLedgerApp {
             case "D":
                 deposit();
                 break;
-            // If user enters P they will be prompted to make a payment
+                // If user enters P they will be prompted to make a payment
             case "P":
                 payment(); //takes user to payment method after being chosen
                 break;
@@ -51,7 +51,10 @@ public class AccountingLedgerApp {
                 System.out.println("Not a valid entry");
                 homeScreen();
         }
+        scanner.close();
     }
+
+
     // Deposit method that asks user for their deposit information
     public static void deposit() {
         // Creates scanner object to get user input
@@ -84,6 +87,7 @@ public class AccountingLedgerApp {
         }
         scanner.close();
     }
+
     // method that prompts user to enter their payment information
     public static void payment() {
         Scanner scanner = new Scanner(System.in);
