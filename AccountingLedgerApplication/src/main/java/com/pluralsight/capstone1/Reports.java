@@ -47,6 +47,9 @@ public class Reports {
                     System.out.println("5) Search By Vendor");
                     searchByVendor();
                     break;
+                default:
+                    System.out.println("Not a valid entry");
+                    displayReports();
             }
         } catch (Exception e) {
             throw new RuntimeException(e);

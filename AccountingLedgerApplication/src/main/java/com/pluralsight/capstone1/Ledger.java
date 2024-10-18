@@ -43,6 +43,9 @@ public class Ledger {
                     System.out.println("You are being directed back to the HOME SCREEN");
                     homeScreen();
                     break;
+                default:
+                    System.out.println("Not a valid entry");
+                    displayLedger();
             }
         } catch (Exception e) {
             throw new RuntimeException(e);

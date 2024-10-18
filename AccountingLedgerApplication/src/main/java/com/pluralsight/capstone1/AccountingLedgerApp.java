@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 import static com.pluralsight.capstone1.Ledger.*;
@@ -40,6 +41,9 @@ public class AccountingLedgerApp {
             case "X":
                 System.out.println("X) Exit: ");
                 scanner.close();
+            default:
+                System.out.println("Not a valid entry");
+                homeScreen();
         }
     }
 
@@ -56,10 +60,12 @@ public class AccountingLedgerApp {
 
         LocalDate date = LocalDate.now();
         LocalTime time = LocalTime.now();
+        DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String formatTime = time.format(timeFormat);
         String transactionsFile = "transactions.csv";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(transactionsFile, true))) {
-            writer.write(date + "|" + time + "|" + description + "|" + vendor + "|" + amount);
+            writer.write(date + "|" + timeFormat + "|" + description + "|" + vendor + "|" + amount);
             writer.newLine();
             System.out.println("Your deposit has been accepted.");
         } catch (IOException e) {
